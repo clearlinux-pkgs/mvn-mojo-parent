@@ -4,13 +4,14 @@
 #
 Name     : mvn-mojo-parent
 Version  : 34
-Release  : 1
+Release  : 2
 URL      : https://github.com/mojohaus/mojo-parent/archive/mojo-parent-34.tar.gz
 Source0  : https://github.com/mojohaus/mojo-parent/archive/mojo-parent-34.tar.gz
-Source1  : https://repo1.maven.org/maven2/org/codehaus/mojo/mojo-parent/34/mojo-parent-34.pom
-Source2  : https://repo1.maven.org/maven2/org/codehaus/mojo/mojo-parent/36/mojo-parent-36.pom
-Source3  : https://repo1.maven.org/maven2/org/codehaus/mojo/mojo-parent/38/mojo-parent-38.pom
-Source4  : https://repo1.maven.org/maven2/org/codehaus/mojo/mojo-parent/40/mojo-parent-40.pom
+Source1  : https://repo.maven.apache.org/maven2/org/codehaus/mojo/maven-metadata.xml
+Source2  : https://repo1.maven.org/maven2/org/codehaus/mojo/mojo-parent/34/mojo-parent-34.pom
+Source3  : https://repo1.maven.org/maven2/org/codehaus/mojo/mojo-parent/36/mojo-parent-36.pom
+Source4  : https://repo1.maven.org/maven2/org/codehaus/mojo/mojo-parent/38/mojo-parent-38.pom
+Source5  : https://repo1.maven.org/maven2/org/codehaus/mojo/mojo-parent/40/mojo-parent-40.pom
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0 EPL-1.0
@@ -32,17 +33,20 @@ data components for the mvn-mojo-parent package.
 %build
 
 %install
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo
+cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/maven-metadata-central.xml
+
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/34
-cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/34
+cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/34/mojo-parent-34.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/36
-cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/36
+cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/36/mojo-parent-36.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/38
-cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/38
+cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/38/mojo-parent-38.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/40
-cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/40
+cp %{SOURCE5} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/40/mojo-parent-40.pom
 
 
 %files
@@ -50,6 +54,7 @@ cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/org/codehaus/mojo/mojo-
 
 %files data
 %defattr(-,root,root,-)
+/usr/share/java/.m2/repository/org/codehaus/mojo/maven-metadata-central.xml
 /usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/34/mojo-parent-34.pom
 /usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/36/mojo-parent-36.pom
 /usr/share/java/.m2/repository/org/codehaus/mojo/mojo-parent/38/mojo-parent-38.pom
